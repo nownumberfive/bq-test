@@ -1,0 +1,29 @@
+@import "vue-toastification/src/scss/_variables";
+@import "vue-toastification/src/scss/_toastContainer";
+@import "vue-toastification/src/scss/_toast";
+@import "vue-toastification/src/scss/_closeButton";
+@import "vue-toastification/src/scss/_progressBar";
+@import "vue-toastification/src/scss/_icon";
+@import "vue-toastification/src/scss/animations/_bounce";
+
+.Vue-Toastification__toast {
+  font-family: Montserrat,sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, 0.2)),
+  0px 4px 5px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.14)),
+  0px 1px 10px 0px var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, 0.12));
+}
+
+.Vue-Toastification__toast--info {
+  background-color: rgb(var(--v-theme-primary), 1);
+}
+.Vue-Toastification__toast--success {
+  background-color: rgb(var(--v-theme-success), 1);
+}
+.Vue-Toastification__toast--error {
+  background-color: rgb(var(--v-theme-error), 1);
+}
+
+.Vue-Toastification__icon {
+  font-size: 22px;
+}
