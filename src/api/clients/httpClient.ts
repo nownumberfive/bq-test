@@ -6,7 +6,7 @@ import type {
 } from 'axios';
 import type { HttpClient } from '@/api/types/http';
 import axios from 'axios';
-import { AUTH_TOKEN_KEY } from '@/constants/app';
+import { HEADER_AUTH_KEY } from '@/constants/app';
 import { HttpError } from '@/api/errors/httpError';
 import { HTTP_METHOD } from '@/api/types/http';
 import { useAuthStore } from '@/stores/auth.store';
@@ -30,7 +30,7 @@ export class AxiosHttpClient implements HttpClient {
     } as AxiosRequestHeaders;
 
     if (accessToken) {
-      headers[AUTH_TOKEN_KEY] = `Bearer ${accessToken}`;
+      headers[HEADER_AUTH_KEY] = `Bearer ${accessToken}`;
     }
 
     return {
