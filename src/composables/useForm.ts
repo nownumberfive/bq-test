@@ -1,9 +1,8 @@
 import type { Ref, UnwrapNestedRefs } from 'vue';
 import { reactive, ref, unref } from 'vue';
 import { useToast } from "vue-toastification";
+import { HttpError } from "@/api/errors/httpError";
 import useVuelidate from '@vuelidate/core'
-
-const toast = useToast();
 
 type ValidationErrors<F> = {
 	[Key in keyof F]: string[];
@@ -37,6 +36,7 @@ function createErrorObject<F extends Record<string, any>>(fields: F): Validation
 }
 
 export const useForm = <F extends Record<string, any>, R extends Record<string, any>>(options: FormOptions<F, R>): FormResult<F> => {
+	const toast = useToast();
 	const loading = ref(false);
 	const data = reactive(options.fields);
 	const errors = reactive(createErrorObject<F>(options.fields));
@@ -65,14 +65,14 @@ export const useForm = <F extends Record<string, any>, R extends Record<string, 
 
 			loading.value = true;
 
-			const res = await options.submitFn(options.fields);
+			const res = await options.submitFn(unref(data));
 
 			if (options.successToast) {
 				toast.success(options.successText || res?.message);
 			}
 
 			if (options.onSuccess) {
-				options.onSuccess(unref(data));
+				options.onSuccess(res);
 			}
 		} catch(err: any) {
 
@@ -81,7 +81,7 @@ export const useForm = <F extends Record<string, any>, R extends Record<string, 
 			}
 
 			if (options.onError) {
-				options.onError(unref(data), err as Error);
+				options.onError(unref(data), err as HttpError);
 			}
 		} finally {
 			loading.value = false;
