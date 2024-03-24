@@ -5,28 +5,13 @@ class Config {
   };
 
   constructor() {
-    const generateEnv = this.generateEnv.bind(this);
-    this.env = new Proxy(this.env, {
-      get(target, prop: string) {
-        const env = generateEnv();
-
-        // @ts-ignore
-        return env[prop] || '';
-      },
-    });
+    this.env = {
+      BASE_URL: this.getEnv('BASE_URL', '/'),
+      BACKEND_URL: this.getEnv('BACKEND_URL', '/'),
+    }
   }
 
-  generateEnv() {
-    const BASE_URL = this.getEnv('BASE_URL', '/');
-    const BACKEND_URL = this.getEnv('BACKEND_URL', window.location.origin);
-
-    return {
-      BASE_URL,
-      BACKEND_URL,
-    };
-  }
-
-  getEnv(name: string, defaultVal: string) {
+  private getEnv(name: string, defaultVal: string) {
     const env = import.meta.env;
 
     return this.trim(env[name] || defaultVal);
