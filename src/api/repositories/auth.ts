@@ -1,5 +1,5 @@
-import type { IResponseData, IResponseMessage } from '@/api/types/http';
-import type { IUser, IToken, LoginParams, RegisterParams } from '@/api/types/auth';
+import type { IResponseData, IResponseMessage } from '@/types/http';
+import type { IUser, IToken, LoginParams, RegisterParams } from '@/types/auth';
 import { BaseRepository } from '@/api/repositories/_baseRepository';
 
 export class RAuth extends BaseRepository {

@@ -4,11 +4,11 @@ import type {
   AxiosRequestHeaders,
   InternalAxiosRequestConfig,
 } from 'axios';
-import type { HttpClient } from '@/api/types/http';
+import type { HttpClient } from '@/types/http';
 import axios from 'axios';
 import { HEADER_AUTH_KEY } from '@/constants/app';
 import { HttpError } from '@/api/errors/httpError';
-import { HTTP_METHOD } from '@/api/types/http';
+import { HTTP_METHOD } from '@/types/http';
 import { useAuthStore } from '@/stores/auth.store';
 import config from "@/config";
 

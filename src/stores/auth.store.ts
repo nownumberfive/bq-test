@@ -1,5 +1,5 @@
 import type { RouteLocationNormalized } from 'vue-router';
-import type { IUser, LoginParams } from '@/api/types/auth';
+import type { IUser, LoginParams } from '@/types/auth';
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useRouter } from 'vue-router';

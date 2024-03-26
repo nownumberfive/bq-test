@@ -1,4 +1,4 @@
-import type { HttpClient } from '@/api/types/http';
+import type { HttpClient } from '@/types/http';
 
 export type RParams = {
   httpClient: HttpClient;

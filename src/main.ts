@@ -8,8 +8,8 @@ import router from './router'
 import pinia from '@/stores';
 import toast from '@/plugins/toast';
 import PrimeVue from 'primevue/config';
-import {useAuthStore} from "@/stores/auth.store";
-import {enableRouterGuards} from '@/router/guards';
+import { useAuthStore } from "@/stores/auth.store";
+import { enableRouterGuards } from '@/router/guards';
 
 const app = createApp(App)
 

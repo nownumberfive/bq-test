@@ -4,10 +4,10 @@ import { useRouter } from "vue-router";
 import BaseForm from '@/components/Base/BaseForm.vue';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
-import Button from 'primevue/button';
 import { required, minLength } from '@vuelidate/validators'
 import { useForm } from "@/composables/useForm";
 import api from '@/api';
+import BaseInputWrapper from "@/components/Base/BaseInputWrapper.vue";
 
 const router = useRouter();
 
@@ -36,29 +36,16 @@ const form = useForm({
 
 <template>
 	<div>
-		<BaseForm class="authForm" title="Регистрация" @submit="form.onSubmit">
+		<BaseForm class="authForm" title="Регистрация" submit-btn-text="Зарегистрироваться" :loading="form.loading.value" @submit="form.onSubmit">
 			<div class="flex-column-center">
-				<div class="mb-10 flex-column-center">
-					<label for="username">Логин</label>
-					<InputText v-model="form.data.username" :invalid="form.errors.username.length > 0" />
-					<div class="error" v-if="form.errors.username.length > 0">
-						<p v-for="error in form.errors.username" :key="error">{{ error }}</p>
-					</div>
-				</div>
-				<div class="mb-10 flex-column-center">
-					<label for="password">Пароль</label>
-					<Password v-model="form.data.password" toggleMask :invalid="form.errors.password.length > 0" />
-					<div class="error" v-if="form.errors.password.length > 0">
-						<p v-for="error in form.errors.password" :key="error">{{ error }}</p>
-					</div>
-				</div>
-			</div>
+				<BaseInputWrapper label="Логин" :errors="form.errors.username">
+					<InputText v-model="form.data.username" type="text" :invalid="form.errors.username.length > 0" />
+				</BaseInputWrapper>
 
-			<template #actions>
-				<div>
-					<Button type="submit" label="Зарегистрироваться" class="w-full mt-10" :loading="form.loading.value" />
-				</div>
-			</template>
+				<BaseInputWrapper label="Пароль" :errors="form.errors.password">
+					<Password v-model="form.data.password" toggleMask :invalid="form.errors.password.length > 0" />
+				</BaseInputWrapper>
+			</div>
 
 			<template #footer>
 				<div class="mt-10 fs-12">

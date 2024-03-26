@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import Card from 'primevue/card';
+import Button from "primevue/button";
 
 type Props = {
   title?: string;
+	submitBtnText?: string;
+	loading?: boolean;
 };
 
 const props = defineProps<Props>();
@@ -22,7 +25,11 @@ async function onSubmit(event: any) {
 		<template #content>
 			<form @submit.prevent="onSubmit">
 				<slot />
-				<slot name="actions" />
+				<div class="mt-10">
+					<slot name="actions">
+						<Button type="submit" :label="props.submitBtnText || 'Отправить'" class="w-full" :loading="props.loading" />
+					</slot>
+				</div>
 			</form>
 		</template>
 		<template #footer>
